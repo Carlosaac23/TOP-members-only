@@ -1,9 +1,10 @@
 import expres from 'express';
+import { indexRouter } from './routes/index.js';
 
 const app = expres();
-const PORT = 8080;
+const PORT = 8000;
 
-app.use('/', (req, res) => res.send('Hello, World!'));
+app.use('/', indexRouter);
 
 app.listen(PORT, error => {
   if (error) throw new Error(error);

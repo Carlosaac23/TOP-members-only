@@ -1,19 +1,7 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "printWidth": 80,
-  "jsxSingleQuote": true,
   "singleQuote": true,
+  "jsxSingleQuote": true,
   "trailingComma": "es5",
-  "arrowParens": "avoid",
-  "experimentalSortImports": {
-    "groups": [
-      ["side-effect"],
-      ["builtin"],
-      ["external", "external-type"],
-      ["internal", "internal-type"],
-      ["parent", "parent-type"],
-      ["sibling", "sibling-type"],
-      ["index", "index-type"]
-    ]
-  }
+  "arrowParens": "avoid"
 }
