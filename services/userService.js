@@ -1,9 +1,9 @@
 import { insertUser, getUserById } from '../db/userQueries.js';
-import { generateHashPassword } from '../utils/validatePassword.js';
+import { generateHashedPassword } from '../helpers/validatePassword.js';
 
 export async function createUser(data) {
   console.log('Data in service:', data);
-  const hashedPassword = await generateHashPassword(data.password_hash, 12);
+  const hashedPassword = await generateHashedPassword(data.password_hash, 12);
 
   return await insertUser({
     ...data,

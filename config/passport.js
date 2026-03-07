@@ -1,7 +1,7 @@
 import { Strategy } from 'passport-local';
 import passport from 'passport';
 import { pool } from '../db/pool.js';
-import { validateHashedPassword } from '../utils/validatePassword.js';
+import { validateHashedPassword } from '../helpers/validatePassword.js';
 
 export async function verifyCallback(username, password, done) {
   try {
