@@ -15,29 +15,7 @@ export async function getHome(req, res) {
 }
 
 export function getRegister(req, res) {
-  const registerForm = `
-    <h1>Register</h1>
-    <form method="POST" action="add">
-      <label>First name</label>
-      <input type="text" name="name" />
-
-      <label>Last name</label>
-      <input type="text" name="lastName" />
-
-      <label>Email</label>
-      <input type="email" name="email" />
-
-      <label>Username</label>
-      <input type="text" name="username" />
-
-      <label>Password</label>
-      <input type="password" name="password" />
-
-      <button type="submit">Register</button>
-    </form>
-  `;
-
-  res.send(registerForm);
+  res.render('forms/registerForm');
 }
 
 export async function postRegister(req, res) {
