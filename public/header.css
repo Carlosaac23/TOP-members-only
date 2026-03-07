@@ -1,0 +1,20 @@
+.header {
+  background-color: var(--mist-500);
+  color: var(--mist-50);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2.5rem;
+}
+
+.header__logo {
+  font-size: 3rem;
+}
+
+.header__nav {
+  font-size: 1.6rem;
+
+  display: flex;
+  gap: 0.4rem;
+}

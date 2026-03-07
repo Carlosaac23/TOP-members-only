@@ -1,0 +1,8 @@
+.footer {
+  background-color: var(--mist-500);
+  color: var(--mist-50);
+  margin-top: auto;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 1rem;
+}
