@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activate Membership</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/form.css">
+    <link rel="stylesheet" href="/header.css">
+    <link rel="stylesheet" href="/footer.css">
+  </head>
+  <body>
+    <%- include('../partials/header.ejs') %>
+
+    <h1 class="membership__title">Activate membership</h1>
+    <form class="form" action="membership" method="POST">
+      <div class="form-section">
+        <label for="passcode">Enter your code</label>
+        <input type="password" name="passcode" id="passcode" />
+      </div>
+
+
+      <% if (error) { %>
+        <p class="error-message"><%= error %></p>
+      <% } %>
+
+      <button class="form-btn" type="submit">Activate</button>
+    </form>
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

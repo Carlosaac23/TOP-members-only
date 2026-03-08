@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet" href="/header.css" />
+    <link rel="stylesheet" href="/footer.css" />
+    <link rel="stylesheet" href="/user.css" />
+  </head>
+  <body>
+    <%- include('../partials/header.ejs') %>
+
+    <% const fullName = `${user.first_name} ${user.last_name}`; %>
+    <% const initials = `${user.first_name?.[0] || ''}${user.last_name?.[0] || ''}`.toUpperCase(); %>
+
+    <main class="profile-page">
+      <section class="profile-shell">
+        <article class="profile-hero">
+          <div class="profile-hero__container">
+            <div class="profile-hero__badge">Member profile</div>
+            <% if (user.is_member) { %>
+              <div class="profile-hero__badge membership">
+                <p>You are a member</p>
+              </div>
+            <% } else { %>  
+              <div class="profile-hero__badge membership">
+                <a href="/users/membership">Activate Membership</a>
+              </div>
+            <% } %>
+          </div>
+          <div class="profile-hero__header">
+            <div class="profile-hero__avatar" aria-hidden="true"><%= initials %></div>
+            <div class="profile-hero__copy">
+              <p class="profile-hero__eyebrow">Private club access</p>
+              <h1 class="profile-hero__name"><%= fullName %></h1>
+              <p class="profile-hero__username">@<%= user.username %></p>
+            </div>
+          </div>
+
+          <p class="profile-hero__summary">
+            Your account is active and ready to access member-only conversations,
+            announcements, and updates.
+          </p>
+
+          <div class="profile-hero__stats" aria-label="Profile highlights">
+            <div class="profile-stat">
+              <span class="profile-stat__label">Status</span>
+              <strong class="profile-stat__value">Active</strong>
+            </div>
+            <div class="profile-stat">
+              <span class="profile-stat__label">Role</span>
+              <strong class="profile-stat__value">Community member</strong>
+            </div>
+            <div class="profile-stat">
+              <span class="profile-stat__label">Contact</span>
+              <strong class="profile-stat__value">Verified email</strong>
+            </div>
+          </div>
+        </article>
+
+        <section class="profile-panels" aria-label="Account details">
+          <article class="profile-panel">
+            <div class="profile-panel__heading">
+              <p class="profile-panel__eyebrow">Account details</p>
+              <h2>Personal information</h2>
+            </div>
+
+            <dl class="profile-details">
+              <div class="profile-details__item">
+                <dt>First name</dt>
+                <dd><%= user.first_name %></dd>
+              </div>
+              <div class="profile-details__item">
+                <dt>Last name</dt>
+                <dd><%= user.last_name %></dd>
+              </div>
+              <div class="profile-details__item">
+                <dt>Username</dt>
+                <dd><%= user.username %></dd>
+              </div>
+              <div class="profile-details__item">
+                <dt>Email</dt>
+                <dd><%= user.email %></dd>
+              </div>
+            </dl>
+          </article>
+
+          <aside class="profile-panel profile-panel--accent">
+            <div class="profile-panel__heading">
+              <p class="profile-panel__eyebrow">Member access</p>
+              <h2>What this profile unlocks</h2>
+            </div>
+
+            <ul class="profile-perks">
+              <li>Read and participate in private member discussions.</li>
+              <li>Keep your account identity and contact details in one place.</li>
+              <li>Return here anytime for a clean overview of your membership.</li>
+            </ul>
+          </aside>
+        </section>
+      </section>
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>
