@@ -13,6 +13,12 @@
   --mist-900: #161b1d;
   --mist-950: #090b0c;
 
+  --red-500: #ef4444;
+
+  --amber-100: #fef3c7;
+  --amber-400: #fbbf24;
+  --amber-700: #b45309;
+
   --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 
   --rounded: 1rem;
