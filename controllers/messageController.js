@@ -6,7 +6,6 @@ export async function createMessageFormController(req, res) {
 }
 
 export async function createMessageController(req, res) {
-  console.log('message from controller:', req.body);
   const {
     user: { id: userId },
   } = req;
@@ -28,21 +27,7 @@ export async function createMessageController(req, res) {
 }
 
 export async function deleteMessageController(req, res) {
-  console.log('id del mensaje:', req.params);
   const { messageId } = req.params;
   await deleteMessageById(messageId);
   res.redirect('/users/profile');
 }
-
-// export async function getMessageController(req, res) {
-//   const { messageId } = req.params;
-//   const message = await getMessageService(messageId);
-//   const parsedMessage = messageRowSchema.safeParse(message);
-
-//   if (!parsedMessage.success) {
-//     return res.status(400).json({ errors: parsedMessage.error.issues });
-//   }
-
-//   console.log('message:', message);
-//   res.status(201).json(parsedMessage.data);
-// }

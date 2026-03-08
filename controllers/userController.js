@@ -5,9 +5,7 @@ import { getMessages, getMessagesFromUser } from '../db/messageQueries.js';
 import { activateMembership } from '../db/userQueries.js';
 
 export async function userHomeFeedController(req, res) {
-  console.log('Request from user home:', req);
   const messages = await getMessages();
-  console.log(messages);
 
   res.render('user/home', { user: req.user, messages });
 }
