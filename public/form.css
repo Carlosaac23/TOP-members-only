@@ -59,8 +59,9 @@
   transform: scale(0.98);
 }
 
-/* Register Form Page */
-.register__title {
+/* Register and Login Form Page */
+.register__title,
+.login__title {
   font-size: 3rem;
   text-align: center;
   margin: 2rem 0;
