@@ -13,19 +13,6 @@ export async function getHome(req, res) {
   res.json(validatedUsers.data);
 }
 
-export function loginFailure(req, res) {
-  res.send('You entered the wrong password.');
-}
-
-export function loginSuccess(req, res) {
-  res.send(
-    `<p>You successfully logged in. --> <a href="/users/protected-route">Go to protected route</a></p>
-     <p>You successfully logged in. --> <a href="/admin-route">Go to admin route</a></p>
-     <p> <a href="/logout">Logout</a> </p>
-    `
-  );
-}
-
 export async function getUserController(req, res) {
   const { userId } = req.params;
   const user = await getUser(userId);
