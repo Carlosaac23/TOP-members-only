@@ -1,5 +1,5 @@
 // import { insertMessageService, getMessageService } from '../services/messageService.js';
-import { insertMessage } from '../db/messageQueries.js';
+import { createMessage } from '../db/messageQueries.js';
 // import { getMessages } from '../db/messageQueries.js';
 import { messageRowSchema, createMessageInputSchema } from '../schemas/messageSchema.js';
 
@@ -25,7 +25,7 @@ export async function createMessageController(req, res) {
     return res.status(400).json({ errors: parsedMessage.error.issues });
   }
 
-  await insertMessage(parsedMessage.data);
+  await createMessage(parsedMessage.data);
   res.redirect('/messages');
 }
 

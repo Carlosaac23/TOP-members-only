@@ -5,7 +5,7 @@ export async function getMessages() {
   return rows;
 }
 
-export async function insertMessage(data) {
+export async function createMessage(data) {
   console.log('Message from controller:', data);
   return await pool.query('INSERT INTO messages (title, content, user_id) VALUES ($1, $2, $3)', [
     data.title,
