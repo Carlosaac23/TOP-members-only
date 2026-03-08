@@ -1,9 +1,20 @@
 <header class="header">
-  <h1 class="header__logo">
-    <a href="/">VIP Members</a>
-  </h1>
+  <% if (user) { %>
+    <h1 class="header__logo">
+      <a href="/users">VIP Members</a>
+    </h1>
 
-  <nav class="header__nav">
-    <a href="/login">Log In</a>
-  </nav>
+    <nav class="header__nav">
+      <a href="/users/profile">Profile</a>
+      <a href="/logout">Log Out</a>
+    </nav>
+    <% } else { %>
+    <h1 class="header__logo">
+      <a href="/">VIP Members</a>
+    </h1>
+
+    <nav class="header__nav">
+      <a href="/login">Log In</a>
+    </nav>
+  <% } %>
 </header>
