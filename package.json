@@ -30,6 +30,5 @@
     "nodemon": "^3.1.14",
     "oxfmt": "^0.36.0",
     "oxlint": "^1.51.0"
-  },
-  "packageManager": "pnpm@10.30.0"
+  }
 }
