@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 
 import './config/passport.js';
 import { pool } from './db/pool.js';
+import { authRoutes } from './routes/authRoutes.js';
 import { indexRoutes } from './routes/indexRoutes.js';
 import { messageRoutes } from './routes/messageRoutes.js';
 import { userRoutes } from './routes/userRoutes.js';
@@ -45,6 +46,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRoutes);
+app.use('/', authRoutes);
 app.use('/users', userRoutes);
 app.use('/messages', messageRoutes);
 
