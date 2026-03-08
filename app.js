@@ -1,6 +1,7 @@
 import connectPgSimple from 'connect-pg-simple';
 import expres from 'express';
 import session from 'express-session';
+import methodOverride from 'method-override';
 import passport from 'passport';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -29,6 +30,7 @@ app.set('view engine', 'ejs');
 app.use(expres.static(assetsPath));
 app.use(expres.json());
 app.use(expres.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 const ONE_DAY = 1000 * 60 * 60 * 24;
 
