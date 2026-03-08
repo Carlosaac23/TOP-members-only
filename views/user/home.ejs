@@ -73,7 +73,7 @@
                     <% } %>
 
                     <div class="message-card__body">
-                      <% if (user.is_member) { %>
+                      <% if (user.is_member || message.user_id === user.id) { %>
                         <%= message.content %>
                       <% } else { %>
                        <%= 'You are not member to see this message.' %>
