@@ -4,12 +4,12 @@ import { createUserInputSchema } from '../schemas/userSchema.js';
 import { createUser } from '../services/userService.js';
 
 export function loginFormController(req, res) {
-  res.render('forms/loginForm');
+  res.render('forms/loginForm', { user: req.user });
 }
 
 export const loginController = passport.authenticate('local', {
   failureRedirect: '/login-failure',
-  successRedirect: '/login-success',
+  successRedirect: '/users',
 });
 
 export function logoutController(req, res) {
@@ -21,7 +21,7 @@ export function logoutController(req, res) {
 }
 
 export function registerFormController(req, res) {
-  res.render('forms/registerForm');
+  res.render('forms/registerForm', { user: req.user, errors: [], formData: {} });
 }
 
 export async function registerController(req, res) {
@@ -32,10 +32,20 @@ export async function registerController(req, res) {
       email: req.body.email,
       username: req.body.username,
       password_hash: req.body.password,
+      confirm_password: req.body.confirmPassword,
     };
 
-    const validatedUser = createUserInputSchema.parse(newUser);
-    await createUser(validatedUser);
+    const validatedUser = createUserInputSchema.safeParse(newUser);
+
+    if (!validatedUser.success) {
+      return res.status(400).render('forms/registerForm', {
+        user: req.user,
+        errors: validatedUser.error.issues,
+        formData: req.body,
+      });
+    }
+
+    await createUser(validatedUser.data);
 
     res.redirect('/login');
   } catch (error) {
@@ -45,14 +55,4 @@ export async function registerController(req, res) {
 
 export function loginFailure(req, res) {
   res.send('You entered the wrong password.');
-}
-
-export function loginSuccess(req, res) {
-  res.send(
-    `<p>You successfully logged in. --> <a href="/users/protected-route">Go to protected route</a></p>
-     <p>You successfully logged in. --> <a href="/admin-route">Go to admin route</a></p>
-     <p>You successfully logged in. --> <a href="/messages">Create a message</a></p>
-     <p> <a href="/logout">Logout</a> </p>
-    `
-  );
 }
