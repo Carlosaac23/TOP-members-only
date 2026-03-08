@@ -1,12 +1,14 @@
 import { Router } from 'express';
+
 import {
-  getMessagesController,
+  createMessageFormController,
   createMessageController,
-  getMessageController,
+  // getMessageController,
 } from '../controllers/messageController.js';
+import isAuth from '../middleware/auth.js';
 
 export const messageRoutes = Router();
 
-messageRoutes.get('/', getMessagesController);
-messageRoutes.post('/add', createMessageController);
-messageRoutes.get('/:messageId', getMessageController);
+messageRoutes.get('/', isAuth, createMessageFormController);
+messageRoutes.post('/', isAuth, createMessageController);
+// messageRoutes.get('/:messageId', getMessageController);
