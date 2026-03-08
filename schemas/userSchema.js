@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const userRowSchema = z.object({
   id: z.uuid(),
   first_name: z.string(),
-  last_name: z.string(),
+  last_name: z.string().optional(),
   email: z.email(),
   username: z.string(),
   password_hash: z.string(),
