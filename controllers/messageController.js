@@ -1,10 +1,8 @@
-// import { insertMessageService, getMessageService } from '../services/messageService.js';
-import { createMessage } from '../db/messageQueries.js';
-// import { getMessages } from '../db/messageQueries.js';
-import { messageRowSchema, createMessageInputSchema } from '../schemas/messageSchema.js';
+import { createMessage, deleteMessageById } from '../db/messageQueries.js';
+import { createMessageInputSchema } from '../schemas/messageSchema.js';
 
 export async function createMessageFormController(req, res) {
-  res.render('forms/createMessageForm');
+  res.render('forms/createMessageForm', { user: req.user });
 }
 
 export async function createMessageController(req, res) {
@@ -26,7 +24,14 @@ export async function createMessageController(req, res) {
   }
 
   await createMessage(parsedMessage.data);
-  res.redirect('/messages');
+  res.redirect('/users');
+}
+
+export async function deleteMessageController(req, res) {
+  console.log('id del mensaje:', req.params);
+  const { messageId } = req.params;
+  await deleteMessageById(messageId);
+  res.redirect('/users/profile');
 }
 
 // export async function getMessageController(req, res) {
