@@ -51,7 +51,11 @@
             </div>
             <div class="profile-stat">
               <span class="profile-stat__label">Role</span>
-              <strong class="profile-stat__value">Community member</strong>
+              <% if (user.is_member) { %>
+                <strong class="profile-stat__value">Member</strong>
+              <% } else { %>
+                <strong class="profile-stat__value">User</strong>
+              <% } %>
             </div>
             <div class="profile-stat">
               <span class="profile-stat__label">Contact</span>
@@ -99,6 +103,55 @@
               <li>Return here anytime for a clean overview of your membership.</li>
             </ul>
           </aside>
+
+          <div class="message-feed">
+              <% if (messagesList.length > 0) { %>
+                <% messagesList.forEach(message => { %>
+                  <article class="message-card">
+                    <div class="message-card__meta">
+                      <div>
+                        <p class="message-card__author">
+                          @<%= user.username || 'Member' %>
+                        </p>
+                        <% if (message.created_at) { %>
+                          <p class="message-card__timestamp">
+                            <%= new Date(message.created_at).toLocaleDateString() %>
+                          </p>
+                        <% } %>
+                      </div>
+                    </div>
+
+                    <% if (message.title) { %>
+                      <h3 class="message-card__title"><%= message.title %></h3>
+                    <% } %>
+
+                    <div class="message-card__body">
+                      <% if (user.is_member) { %>
+                        <%= message.content %>
+                      <% } else { %>
+                       <%= 'You are not member to see this message.' %>
+                      <% } %>
+                    </div>
+
+                    <% if (user.is_admin) { %>
+                      <div class="message-card__btns">
+                        <form action="/messages/<%= message.id %>?_method=DELETE" method="post">
+                          <button class="delete-btn" type="submit">Delete</button>
+                        </form>
+                      </div>
+                    <% } %>
+                  </article>
+                <% }) %>
+              <% } else { %>
+                <div class="message-feed__empty">
+                  <h3>No messages yet</h3>
+                  <p>
+                    This area is ready to render every user message once the
+                    controller passes a `messages` array into this view.
+                  </p>
+                </div>
+              <% } %>
+            </div>
         </section>
       </section>
     </main>
