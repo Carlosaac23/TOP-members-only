@@ -8,8 +8,8 @@ export function loginFormController(req, res) {
 }
 
 export const loginController = passport.authenticate('local', {
-  failureRedirect: '/users/login-failure',
-  successRedirect: '/users/login-success',
+  failureRedirect: '/login-failure',
+  successRedirect: '/login-success',
 });
 
 export function logoutController(req, res) {
@@ -41,4 +41,18 @@ export async function registerController(req, res) {
   } catch (error) {
     console.error(error);
   }
+}
+
+export function loginFailure(req, res) {
+  res.send('You entered the wrong password.');
+}
+
+export function loginSuccess(req, res) {
+  res.send(
+    `<p>You successfully logged in. --> <a href="/users/protected-route">Go to protected route</a></p>
+     <p>You successfully logged in. --> <a href="/admin-route">Go to admin route</a></p>
+     <p>You successfully logged in. --> <a href="/messages">Create a message</a></p>
+     <p> <a href="/logout">Logout</a> </p>
+    `
+  );
 }
