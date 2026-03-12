@@ -8,12 +8,19 @@
     <link rel="stylesheet" href="/form.css">
     <link rel="stylesheet" href="/header.css">
     <link rel="stylesheet" href="/footer.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
   </head>
   <body>
     <%- include('../partials/header.ejs') %>
 
     <h1 class="membership__title">Activate membership</h1>
     <form class="form" action="membership" method="POST">
+      <a class="back" href="javascript:history.back()">
+        <i data-lucide="arrow-left" class="arrow"></i>
+        <span>Back</span>
+      </a>
       <div class="form-section">
         <label for="passcode">Enter your code</label>
         <input type="password" name="passcode" id="passcode" />
@@ -24,9 +31,12 @@
         <p class="error-message"><%= error %></p>
       <% } %>
 
-      <button class="form-btn" type="submit">Activate</button>
+      <button class="form-btn membership-btn" type="submit">Activate</button>
     </form>
 
     <%- include('../partials/footer.ejs') %>
   </body>
+  <script>
+    lucide.createIcons()
+  </script>
 </html>
