@@ -23,7 +23,8 @@
   font-weight: 500;
 }
 
-.form-section input {
+.form-section input,
+.form-section textarea {
   width: 100%;
   border: 1px solid var(--mist-300);
   border-radius: var(--rounded);
@@ -34,9 +35,15 @@
   font-size: 1.5rem;
 }
 
-.form-section input:focus {
+.form-section input:focus,
+.form-section textarea:focus {
   outline: 1px solid var(--mist-500);
   outline-offset: 0.2rem;
+}
+
+.form-section textarea {
+  resize: none;
+  font-family: inherit;
 }
 
 .form-btn {
@@ -52,6 +59,29 @@
 
   transition: transform 0.15s ease-out;
   box-shadow: var(--shadow-sm);
+}
+
+.back {
+  font-size: 1.2rem;
+
+  display: flex;
+  align-items: center;
+  align-self: start;
+  gap: 0.4rem;
+}
+
+.arrow {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.back:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.membership-btn {
+  margin-top: 0;
 }
 
 .form-btn:hover {
