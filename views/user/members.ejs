@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Current Members</title>
+    <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet" href="/header.css" />
+    <link rel="stylesheet" href="/footer.css" />
+    <link rel="stylesheet" href="/members.css" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+    <%- include('../partials/header.ejs') %>
+
+    <main class="members-page">
+      <section class="members-shell">
+        <header class="members-hero">
+          <div class="members-hero__badge">Community</div>
+          <div class="members-hero__content">
+            <div>
+              <p class="members-hero__eyebrow">Active directory</p>
+              <h1 class="members-hero__title">Current Members</h1>
+              <p class="members-hero__summary">
+                Explore the members currently in the VIP community. This list is
+                designed for quick scanning and a clean overview.
+              </p>
+            </div>
+            <div class="members-hero__panel">
+              <span class="members-hero__panel-label">Total</span>
+              <strong class="members-hero__panel-value"><%= members.length %></strong>
+              <span class="members-hero__panel-meta">Members listed</span>
+            </div>
+          </div>
+        </header>
+
+        <section class="members-grid" aria-label="Member list">
+          <% if (members.length > 0) { %>
+            <% members.forEach(member => { %>
+              <article class="member-card">
+                <div class="member-card__avatar" aria-hidden="true">
+                  <%= (member.first_name?.[0] || '') + (member.last_name?.[0] || '') %>
+                </div>
+                <div>
+                  <h2 class="member-card__name">
+                    <%= member.first_name %> <%= member.last_name %>
+                  </h2>
+                  <p class="member-card__meta">@<%= member.username %></p>
+                </div>
+              </article>
+            <% }) %>
+          <% } else { %>
+            <div class="members-empty">
+              <h2>No members yet</h2>
+              <p>Once users sign up, they will appear here.</p>
+            </div>
+          <% } %>
+        </section>
+
+        <a class="members-back" href="javascript:history.back()">
+          <i data-lucide="arrow-left" class="members-back__icon"></i>
+          <span>Back</span>
+        </a>
+      </section>
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+  <script>
+    lucide.createIcons()
+  </script>
+</html>

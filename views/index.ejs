@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIP Messages</title>
+    <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet" href="/landing.css" />
+    <link rel="stylesheet" href="/header.css" />
+    <link rel="stylesheet" href="/footer.css" />
+  </head>
+  <body>
+    <%- include('./partials/header.ejs') %>
+
+    <main class="landing-page">
+      <section class="landing-hero">
+        <div class="landing-hero__badge">Private community</div>
+        <div class="landing-hero__content">
+          <div>
+            <h1 class="landing-hero__title">VIP Members</h1>
+            <p class="landing-hero__summary">
+              A focused space for members to share messages, updates, and ideas.
+              Log in to join the conversation or register to get invited in.
+            </p>
+            <div class="landing-hero__actions">
+              <a class="landing-hero__cta" href="/login">Log in</a>
+              <a class="landing-hero__ghost" href="/register">Create account</a>
+            </div>
+          </div>
+          <div class="landing-hero__panel">
+            <p class="landing-hero__panel-title">What you get</p>
+            <ul class="landing-hero__list">
+              <li>Member-only message feed.</li>
+              <li>Profile management in one place.</li>
+              <li>Simple, distraction-free interface.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>

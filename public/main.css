@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  --mist-50: #f9fbfb;
+  --mist-100: #f1f3f3;
+  --mist-200: #e3e7e8;
+  --mist-300: #d0d6d8;
+  --mist-400: #9ca8ab;
+  --mist-500: #67787c;
+  --mist-600: #4b585b;
+  --mist-700: #394447;
+  --mist-800: #22292b;
+  --mist-900: #161b1d;
+  --mist-950: #090b0c;
+
+  --red-500: #ef4444;
+
+  --amber-100: #fef3c7;
+  --amber-400: #fbbf24;
+  --amber-700: #b45309;
+
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+  --rounded: 1rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Inter, Arial, sans-serif;
+  background-color: var(--mist-50);
+  color: var(--mist-900);
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

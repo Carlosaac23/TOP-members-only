@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Welcome, <%= user.first_name.charAt(0).toUpperCase() +
+      user.first_name.slice(1).toLowerCase() %>!
+    </title>
+    <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet" href="/header.css" />
+    <link rel="stylesheet" href="/footer.css" />
+    <link rel="stylesheet" href="/user.css" />
+  </head>
+  <body>
+    <%- include('../partials/header.ejs') %>
+
+    <% const firstName = user.first_name.charAt(0).toUpperCase() + user.first_name.slice(1).toLowerCase(); %>
+    <% const fullName = `${user.first_name} ${user.last_name}`; %>
+    <% const messagesList = Array.isArray(messages) ? messages : []; %>
+
+    <main class="home-page">
+      <section class="home-shell">
+        <article class="home-hero">
+          <div class="home-hero__badge">Members home</div>
+          <div class="home-hero__content">
+            <div>
+              <p class="home-hero__eyebrow">Welcome back</p>
+              <h1 class="home-hero__title"><%= firstName %>, the lounge is live.</h1>
+              <p class="home-hero__summary">
+                Catch up with the latest community posts, jump into the private
+                conversation, and manage your account from one clean home base.
+              </p>
+            </div>
+
+            <div class="home-hero__panel">
+              <span class="home-hero__panel-label">Signed in as</span>
+              <strong class="home-hero__panel-value"><%= fullName %></strong>
+              <span class="home-hero__panel-meta">@<%= user.username %></span>
+            </div>
+          </div>
+        </article>
+
+        <section class="home-layout" aria-label="Member dashboard">
+          <section class="feed-panel">
+            <div class="feed-panel__heading">
+              <div>
+                <p class="feed-panel__eyebrow">Community feed</p>
+                <h2>Messages from all members</h2>
+              </div>
+              <a class="feed-panel__action" href="/messages">Write a message</a>
+            </div>
+
+            <div class="message-feed">
+              <% if (messagesList.length > 0) { %>
+                <% messagesList.forEach(message => { %>
+                  <article class="message-card">
+                    <div class="message-card__meta">
+                      <div>
+                        <% if ((message.username && user.is_member) || message.user_id === user.id) { %>
+                          <p class="message-card__author">
+                            @<%= message.username %>
+                          </p>
+                        <% } else { %>
+                          <p class="message-card__author blur">
+                            @<%= message.username %>
+                          </p>
+                        <% } %>
+                        <% if ((message.created_at && user.is_member) || message.user_id === user.id) { %>
+                          <p class="message-card__timestamp">
+                            <%= new Date(message.created_at).toLocaleDateString() %>
+                          </p>
+                        <% } else { %>
+                          <p class="message-card__timestamp blur">
+                            <%= new Date(message.created_at).toLocaleDateString() %>
+                          </p>
+                        <% } %>
+                      </div>
+                    </div>
+
+                    <% if (message.title) { %>
+                      <h3 class="message-card__title"><%= message.title %></h3>
+                    <% } %>
+
+                    <div class="message-card__body">
+                      <% if (user.is_member || message.user_id === user.id) { %>
+                        <%= message.content %>
+                      <% } else { %>
+                       <%= 'You are not member to see this message.' %>
+                      <% } %>
+                    </div>
+                  </article>
+                <% }) %>
+              <% } else { %>
+                <div class="message-feed__empty">
+                  <h3>No messages yet</h3>
+                  <p>
+                    This area is ready to render every user message once the
+                    controller passes a `messages` array into this view.
+                  </p>
+                </div>
+              <% } %>
+            </div>
+          </section>
+
+          <aside class="home-sidebar">
+            <article class="sidebar-card">
+              <p class="sidebar-card__eyebrow">Quick links</p>
+              <h2>Move around the app</h2>
+              <div class="sidebar-links">
+                <a class="sidebar-link" href="/users/profile">View Profile</a>
+                <a class="sidebar-link" href="/users/members">View Current Members</a>
+
+                <% if (user.is_admin) { %>
+                  <a class="sidebar-link" href="#">Admin Dashboard</a>
+                <% } %>
+
+                <a class="sidebar-link" href="/messages">Create a message</a>
+              </div>
+            </article>
+
+            <article class="sidebar-card sidebar-card--muted">
+              <p class="sidebar-card__eyebrow">Feed notes</p>
+              <h2>Rendering target</h2>
+              <p class="sidebar-card__text">
+                The feed container on this page is built to display all messages
+                from all users in a single scrollable content area.
+              </p>
+            </article>
+          </aside>
+        </section>
+      </section>
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

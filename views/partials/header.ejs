@@ -1,0 +1,21 @@
+<header class="header">
+  <% if (user) { %>
+    <h1 class="header__logo">
+      <a href="/users">VIP Members</a>
+    </h1>
+
+    <nav class="header__nav">
+      <a href="/users/">Home</a>
+      <a href="/users/profile">Profile</a>
+      <a class="log" href="/logout">Log Out</a>
+    </nav>
+    <% } else { %>
+    <h1 class="header__logo">
+      <a href="/">VIP Members</a>
+    </h1>
+
+    <nav class="header__nav">
+      <a class="log" href="/login">Log In</a>
+    </nav>
+  <% } %>
+</header>

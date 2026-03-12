@@ -16,3 +16,12 @@ export async function getUserById(userId) {
   const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [userId]);
   return rows[0];
 }
+
+export async function activateMembership(userId) {
+  await pool.query('UPDATE users SET is_member = true WHERE id = $1', [userId]);
+}
+
+export async function getMemberUsers() {
+  const { rows } = await pool.query('SELECT * FROM users WHERE is_member = true');
+  return rows;
+}

@@ -9,22 +9,26 @@
   "main": "index.js",
   "scripts": {
     "start": "node --env-file-if-exists=.env.local app.js",
-    "dev": "nodemon --env-file-if-exists=.env.local app.js"
+    "dev": "nodemon --env-file-if-exists=.env.local app.js",
+    "fmt": "oxfmt",
+    "lint": "oxlint",
+    "ejslint": "ejslint views"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "connect-pg-simple": "^10.0.0",
+    "ejs": "^5.0.1",
     "express": "^5.2.1",
     "express-session": "^1.19.0",
+    "method-override": "^3.0.0",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "pg": "^8.19.0",
+    "pg": "^8.20.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "nodemon": "^3.1.12",
-    "oxfmt": "^0.34.0",
-    "oxlint": "^1.49.0"
-  },
-  "packageManager": "pnpm@10.30.0"
+    "nodemon": "^3.1.14",
+    "oxfmt": "^0.36.0",
+    "oxlint": "^1.51.0"
+  }
 }

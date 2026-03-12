@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet" href="/header.css" />
+    <link rel="stylesheet" href="/footer.css" />
+    <link rel="stylesheet" href="/form.css" />
+  </head>
+  <body>
+    <%- include('../partials/header.ejs') %>
+
+    <h1 class="register__title">Register</h1>
+    <form class="form" method="POST" action="/register">
+      <div class="form-section">
+        <label for="firstName">First name</label>
+        <input
+          type="text"
+          name="firstName"
+          id="firstName"
+          value="<%= formData.firstName %>"
+          placeholder="John"
+        />
+        <% const error1 = errors.find(err => err.path[0] === 'first_name') %>
+        <span class="error-message"><%= error1?.message %></span>
+      </div>
+
+      <div class="form-section">
+        <label for="lastName">Last name</label>
+        <input
+          type="text"
+          name="lastName"
+          id="lastName"
+          value="<%= formData.lastName %>"
+          placeholder="Doe"
+        />
+        <% const error2 = errors.find(err => err.path[0] === 'last_name') %>
+        <span class="error-message"><%= error2?.message %></span>
+      </div>
+
+      <div class="form-section">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          value="<%= formData.email %>"
+          placeholder="johndoe@hotmail.com"
+        />
+        <% const error3 = errors.find(err => err.path[0] === 'email') %>
+        <span class="error-message"><%= error3?.message %></span>
+      </div>
+
+      <div class="form-section">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          value="<%= formData.username %>"
+          placeholder="johndoe123"
+        />
+        <% const error4 = errors.find(err => err.path[0] === 'username') %>
+        <span class="error-message"><%= error4?.message %></span>
+      </div>
+
+      <div class="form-section">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="password"
+        />
+        <% const error5 = errors.find(err => err.path[0] === 'password_hash') %>
+        <span class="error-message"><%= error5?.message %></span>
+      </div>
+
+      <div class="form-section">
+        <label for="confirmPassword">Password</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          placeholder="password"
+        />
+        <% const error6 = errors.find(err => err.path[0] === 'confirm_password')
+        %>
+        <span class="error-message"><%= error6?.message %></span>
+      </div>
+
+      <button class="form-btn" type="submit">Register</button>
+
+      <div class="form-links">
+        <a href="/login">Already have an account? Log in</a>
+      </div>
+    </form>
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

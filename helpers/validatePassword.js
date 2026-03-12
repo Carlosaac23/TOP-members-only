@@ -1,6 +1,6 @@
 import bcryp from 'bcrypt';
 
-export async function generateHashPassword(password, salt) {
+export async function generateHashedPassword(password, salt) {
   return await bcryp.hash(password, salt);
 }
 

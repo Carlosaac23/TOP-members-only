@@ -1,29 +1,27 @@
 import { Strategy } from 'passport-local';
 import passport from 'passport';
 import { pool } from '../db/pool.js';
-import { validateHashedPassword } from '../utils/validatePassword.js';
+import { validateHashedPassword } from '../helpers/validatePassword.js';
 
 export async function verifyCallback(username, password, done) {
-  await pool
-    .query('SELECT * FROM users WHERE username = $1', [username])
-    .then(async user => {
-      if (!user.rows.length) {
-        return done(null, false);
-      }
+  try {
+    const result = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+    const user = result.rows[0];
 
-      console.log('User from verifyCallback fn:', user);
+    if (!user) {
+      return done(null, false);
+    }
 
-      const isValid = await validateHashedPassword(password, user.rows[0].password_hash);
+    const isValid = await validateHashedPassword(password, user.password_hash);
 
-      if (isValid) {
-        return done(null, user.rows[0]);
-      } else {
-        return done(null, false);
-      }
-    })
-    .catch(error => {
-      return done(error);
-    });
+    if (!isValid) {
+      return done(null, false);
+    }
+
+    return done(null, user);
+  } catch (error) {
+    return done(error);
+  }
 }
 
 const strategy = new Strategy(verifyCallback);
@@ -34,8 +32,16 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (userId, done) => {
-  await pool
-    .query('SELECT * FROM users WHERE id = $1', [userId])
-    .then(user => done(null, user.rows[0]))
-    .catch(error => done(error));
+  try {
+    const result = await pool.query('SELECT * FROM users WHERE id = $1', [userId]);
+    const user = result.rows[0];
+
+    if (!user) {
+      return done(null, false);
+    }
+
+    return done(null, user);
+  } catch (error) {
+    return done(error);
+  }
 });
