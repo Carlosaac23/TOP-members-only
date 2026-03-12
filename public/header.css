@@ -17,5 +17,12 @@
   font-weight: 600;
 
   display: flex;
+  align-items: center;
   gap: 1.2rem;
+}
+
+.header__nav .log {
+  background-color: var(--mist-700);
+  padding: 1rem 1.5rem;
+  border-radius: var(--rounded);
 }
