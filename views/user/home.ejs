@@ -57,11 +57,21 @@
                   <article class="message-card">
                     <div class="message-card__meta">
                       <div>
-                        <p class="message-card__author">
-                          @<%= message.username || 'Member' %>
-                        </p>
-                        <% if (message.created_at) { %>
+                        <% if ((message.username && user.is_member) || message.user_id === user.id) { %>
+                          <p class="message-card__author">
+                            @<%= message.username %>
+                          </p>
+                        <% } else { %>
+                          <p class="message-card__author blur">
+                            @<%= message.username %>
+                          </p>
+                        <% } %>
+                        <% if ((message.created_at && user.is_member) || message.user_id === user.id) { %>
                           <p class="message-card__timestamp">
+                            <%= new Date(message.created_at).toLocaleDateString() %>
+                          </p>
+                        <% } else { %>
+                          <p class="message-card__timestamp blur">
                             <%= new Date(message.created_at).toLocaleDateString() %>
                           </p>
                         <% } %>
@@ -98,9 +108,13 @@
               <p class="sidebar-card__eyebrow">Quick links</p>
               <h2>Move around the app</h2>
               <div class="sidebar-links">
-                <a class="sidebar-link" href="/users/profile">View profile</a>
-                <a class="sidebar-link" href="/users/protected-route">Protected route</a>
-                <a class="sidebar-link" href="/admin-route">Admin route</a>
+                <a class="sidebar-link" href="/users/profile">View Profile</a>
+                <a class="sidebar-link" href="/users/members">View Current Members</a>
+
+                <% if (user.is_admin) { %>
+                  <a class="sidebar-link" href="#">Admin Dashboard</a>
+                <% } %>
+
                 <a class="sidebar-link" href="/messages">Create a message</a>
               </div>
             </article>
