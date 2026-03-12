@@ -1,8 +1,5 @@
-// import { getUsers } from '../db/userQueries.js';
-// import { userRowSchema, userListSchema } from '../schemas/userSchema.js';
-// import { getUser } from '../services/userService.js';
 import { getMessages, getMessagesFromUser } from '../db/messageQueries.js';
-import { activateMembership } from '../db/userQueries.js';
+import { activateMembership, getMemberUsers } from '../db/userQueries.js';
 
 export async function userHomeFeedController(req, res) {
   const messages = await getMessages();
@@ -29,6 +26,20 @@ export async function userActivateMembershipController(req, res) {
     res.redirect('/users/profile');
   } else {
     res.render('user/membership', { user: req.user, error: 'You entered a wrong passcode!' });
+  }
+}
+
+export async function userMembersController(req, res) {
+  try {
+    const members = await getMemberUsers();
+
+    if (!members) {
+      return res.status(401).json({ msg: 'Error getting admin users' });
+    }
+
+    res.render('user/members', { user: req.user, members });
+  } catch (error) {
+    console.error(error);
   }
 }
 
