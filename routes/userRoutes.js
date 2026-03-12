@@ -3,9 +3,9 @@ import { Router } from 'express';
 import {
   userHomeFeedController,
   userProfileController,
-  // protectedRoute,
   userMembershipController,
   userActivateMembershipController,
+  userMembersController,
 } from '../controllers/userController.js';
 import isAuth from '../middleware/auth.js';
 
@@ -17,9 +17,4 @@ userRoutes
   .route('/membership')
   .get(isAuth, userMembershipController)
   .post(isAuth, userActivateMembershipController);
-// userRoutes.route('/add').get(getRegister).post(postRegister);
-// userRoutes.route('/login').get(loginPage).post(login);
-// userRoutes.get('/login-failure', loginFailure);
-// userRoutes.get('/login-success', loginSuccess);
-// userRoutes.get('/protected-route', isAuth, protectedRoute);
-// userRoutes.get('/logout', logout);
+userRoutes.get('/members', isAuth, userMembersController);

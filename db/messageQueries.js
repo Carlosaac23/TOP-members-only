@@ -23,8 +23,3 @@ export async function getMessagesFromUser(userId) {
 export async function deleteMessageById(messageId) {
   await pool.query('DELETE FROM messages WHERE id = $1', [messageId]);
 }
-
-// export async function getMessage(messageId) {
-//   const { rows } = await pool.query('SELECT * FROM messages WHERE id = $1', [messageId]);
-//   return rows[0];
-// }
