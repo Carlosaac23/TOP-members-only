@@ -420,6 +420,10 @@
   color: var(--mist-500);
 }
 
+.blur {
+  filter: blur(0.4rem);
+}
+
 .message-card__title {
   margin-top: 1.4rem;
   font-size: 2rem;
